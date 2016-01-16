@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>caixuutils</groupId>
+    <artifactId>Bean-ValidateUtil</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+<dependencies>
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.4</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.8.3</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>4.1.6.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>13.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>2.5</version>
+    </dependency>
+</dependencies>
+    <build>
+        <finalName>xsddWebroot</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <!--<plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration></configuration>
+            </plugin>-->
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <!-- 发布到私有的 快照 仓库 -->
+        <snapshotRepository>
+            <id>pic_snapshots</id>
+            <name>User Project Snapshots</name>
+            <url>http://192.168.2.56:18081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <!-- 发布到私有的Releases仓库 -->
+        <repository>
+            <id>pic_releases</id>
+            <name>User Project Releases</name>
+            <url>http://192.168.2.56:18081/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+</project>
