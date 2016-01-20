@@ -165,10 +165,10 @@ public class BeanValidateUtil {
                     vvResult.setRowIndex(Integer.valueOf(rowN[0]) );
                     vvResult.setColumnIndex(Integer.valueOf(i));
                     Integer ii=Integer.valueOf(rowN[0]);
-                    if (rowN[1]!=null){
-                        ii=ii+Integer.valueOf(rowN[1])-1;
+                    if (rowN.length>1){
+                        ii=ii+Integer.valueOf(rowN[1])+1;
                     }
-                    vvResult.setMessage("索引号为第:"+ii+"行,第"+i+"列>>"+message+"; ");
+                    vvResult.setMessage("索引号为第:"+ii+"行,第"+(i+1)+"列>>"+message+"; ");
                 }else {
                     vvResult.setRowIndex(Integer.valueOf(0) );
                     vvResult.setColumnIndex(Integer.valueOf(i));
