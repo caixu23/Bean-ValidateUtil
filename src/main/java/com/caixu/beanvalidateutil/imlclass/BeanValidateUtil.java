@@ -95,10 +95,15 @@ public class BeanValidateUtil {
 
 
 
-    public static <T> VResult vali2(List<T> ts)throws Exception{
+    public static <T> VResult vali2(List<T> ts,String... startIndex)throws Exception{
         List<VVResult> vvResults = new ArrayList<>();
         for (int i=0;i<ts.size();i++){
-            VResult vResult=vali2(ts.get(i),String.valueOf(i));
+            VResult vResult=null;
+            if (ObjectUtil.isNotNullEmpty(startIndex)){
+                vResult=vali2(ts.get(i),String.valueOf(i),startIndex[0]);
+            }else {
+                vResult=vali2(ts.get(i),String.valueOf(i));
+            }
             if (!vResult.isRelult()){
                 vvResults.addAll(vResult.getVvResult());
             }
@@ -159,7 +164,11 @@ public class BeanValidateUtil {
                 if (rowN!=null&&rowN.length>0){
                     vvResult.setRowIndex(Integer.valueOf(rowN[0]) );
                     vvResult.setColumnIndex(Integer.valueOf(i));
-                    vvResult.setMessage("索引号为第:"+rowN[0]+"行,第"+i+"列>>"+message+"; ");
+                    Integer ii=Integer.valueOf(rowN[0]);
+                    if (rowN[1]!=null){
+                        ii=ii+Integer.valueOf(rowN[1])-1;
+                    }
+                    vvResult.setMessage("索引号为第:"+ii+"行,第"+i+"列>>"+message+"; ");
                 }else {
                     vvResult.setRowIndex(Integer.valueOf(0) );
                     vvResult.setColumnIndex(Integer.valueOf(i));
