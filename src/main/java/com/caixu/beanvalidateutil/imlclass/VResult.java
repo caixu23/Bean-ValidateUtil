@@ -2,6 +2,7 @@ package com.caixu.beanvalidateutil.imlclass;
 
 
 import com.caixu.beanvalidateutil.utils.ObjectUtil;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public String getAllString(){
         for (VVResult vv:vvResult){
             m+=vv.getMessage();
         }
-        return m;
+        return  StringUtils.replace(m,"; ;","</br>");
     }else {
         return "";
     }
