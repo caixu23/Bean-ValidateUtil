@@ -99,6 +99,18 @@ public class BeanValidateUtil {
 
     public static <T> VResult vali2(List<T> ts,String... startIndex)throws Exception{
         List<VVResult> vvResults = new ArrayList<>();
+
+        if (ObjectUtil.isEmptyAll(ts)){
+            VResult vResult=new VResult();
+            VVResult vvResult12=new VVResult();
+            vvResult12.setMessage("没有需要导入的记录");
+            vvResults.add(vvResult12);
+
+            vResult.setVvResult(vvResults);
+            vResult.setRelult(false);
+            return vResult;
+        }
+
         for (int i=0;i<ts.size();i++){
             VResult vResult=null;
             if (ObjectUtil.isNotNullEmpty(startIndex)){
@@ -181,11 +193,7 @@ public class BeanValidateUtil {
             }
         }
         if (vvResults.isEmpty()){
-            vResult.setRelult(false);
-            List<VVResult> vvResultList=new ArrayList<>();
-            VVResult vvResult12=new VVResult();
-            vvResult12.setMessage("没有需要导入的记录");
-            vResult.setVvResult(vvResultList);
+            vResult.setRelult(true);
         }
         vResult.setVvResult(vvResults);
         return vResult;

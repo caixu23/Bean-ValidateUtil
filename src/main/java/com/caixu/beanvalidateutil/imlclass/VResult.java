@@ -31,7 +31,7 @@ public class VResult {
             String m="";
             for (VVResult vv:vvResult){
                 String colTitle="";
-                if (arr.length>=vv.getRowIndex()){
+                if (vv.getRowIndex()!=null&&arr.length>=vv.getRowIndex()){
                     colTitle=arr[vv.getColumnIndex()];
                     m+=StringUtils.replace(vv.getMessage(),"{title}",colTitle);
                 }else {
