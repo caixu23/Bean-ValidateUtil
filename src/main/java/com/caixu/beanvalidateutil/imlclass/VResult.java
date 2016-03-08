@@ -14,17 +14,37 @@ public class VResult {
     private List<VVResult> vvResult;
     private String messgae;
 
-public String getAllString(){
-    if (!ObjectUtil.isEmptyAll(vvResult)){
-        String m="";
-        for (VVResult vv:vvResult){
-            m+=vv.getMessage();
+    public String getAllString(){
+        if (!ObjectUtil.isEmptyAll(vvResult)){
+            String m="";
+            for (VVResult vv:vvResult){
+                m+=vv.getMessage();
+            }
+            return StringUtils.replace(m,"; ;",";</br>");
+        }else {
+            return "";
         }
-        return  StringUtils.replace(m,"; ;","</br>");
-    }else {
-        return "";
     }
-}
+
+    public String getAllString(String[] arr){
+        if (!ObjectUtil.isEmptyAll(vvResult)){
+            String m="";
+            for (VVResult vv:vvResult){
+                String colTitle="";
+                if (arr.length>=vv.getRowIndex()){
+                    colTitle=arr[vv.getColumnIndex()];
+                    m+=StringUtils.replace(vv.getMessage(),"{title}",colTitle);
+                }else {
+                    m+=vv.getMessage();
+                }
+
+            }
+            m=StringUtils.replace(m,"[{title}]","");
+            return StringUtils.replace(m,"; ;",";</br>");
+        }else {
+            return "";
+        }
+    }
 
     public List<VVResult> getVvResult() {
         return vvResult;

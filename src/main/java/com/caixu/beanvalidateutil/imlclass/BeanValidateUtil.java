@@ -3,6 +3,7 @@ package com.caixu.beanvalidateutil.imlclass;
 import com.caixu.beanvalidateutil.annotations.DataValidate;
 import com.caixu.beanvalidateutil.utils.ObjectUtil;
 import com.google.common.base.Predicate;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import sun.reflect.misc.FieldUtil;
@@ -66,6 +67,7 @@ public class BeanValidateUtil {
                         //没有这个方法也不需要做任何操作，返回默认值即可
                     }
                     if (gg != null) {
+                        String v= BeanUtils.getProperty(t,fieldArr[i].getName());
                         message = fieldArr[i].getName()+ ">>>" + (String) gg.invoke(annotation);
                     }
                     VVResult vvResult = new VVResult();
@@ -150,7 +152,8 @@ public class BeanValidateUtil {
                         //没有这个方法也不需要做任何操作，返回默认值即可
                     }
                     if (gg != null) {
-                        message +=  fieldArr[i].getName()+ ">>>" + (String) gg.invoke(annotation)+"; ";
+                        String v= BeanUtils.getProperty(t,fieldArr[i].getName());
+                        message +=  "[{title}]值为["+v+ "]>>>[" + (String) gg.invoke(annotation)+"]; ";
                     }
                 }
             }
@@ -168,7 +171,7 @@ public class BeanValidateUtil {
                     if (rowN.length>1){
                         ii=ii+Integer.valueOf(rowN[1])+1;
                     }
-                    vvResult.setMessage("索引号为第:"+ii+"行,第"+(i+1)+"列>>"+message+"; ");
+                    vvResult.setMessage("索引号为:第"+ii+"行,第"+(i+1)+"列>>"+message+"; ");
                 }else {
                     vvResult.setRowIndex(Integer.valueOf(0) );
                     vvResult.setColumnIndex(Integer.valueOf(i));
@@ -178,7 +181,11 @@ public class BeanValidateUtil {
             }
         }
         if (vvResults.isEmpty()){
-            vResult.setRelult(true);
+            vResult.setRelult(false);
+            List<VVResult> vvResultList=new ArrayList<>();
+            VVResult vvResult12=new VVResult();
+            vvResult12.setMessage("没有需要导入的记录");
+            vResult.setVvResult(vvResultList);
         }
         vResult.setVvResult(vvResults);
         return vResult;
@@ -187,4 +194,3 @@ public class BeanValidateUtil {
 
 
 }
-
