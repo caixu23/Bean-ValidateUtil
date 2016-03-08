@@ -2,6 +2,7 @@ package com.caixu.beanvalidateutil.imlclass;
 
 
 import com.caixu.beanvalidateutil.utils.ObjectUtil;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class VResult {
             for (VVResult vv:vvResult){
                 m+=vv.getMessage();
             }
-            return StringUtils.replace(m,"; ;",";</br>");
+            return StringUtils.replace(m,"; ;",";</br>").replaceAll("[\\t\\n\\r]", "");
         }else {
             return "";
         }
@@ -40,7 +41,9 @@ public class VResult {
 
             }
             m=StringUtils.replace(m,"[{title}]","");
-            return StringUtils.replace(m,"; ;",";</br>");
+            String mess=StringUtils.replace(m,"; ;",";</br>").replaceAll("[\\t\\n\\r]", "");
+            return StringEscapeUtils.escapeJavaScript(mess);
+            //return
         }else {
             return "";
         }

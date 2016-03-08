@@ -29,7 +29,7 @@ public @interface DataValidate {
      */
     Class<? extends Object>[] type() default {};
     String typeMessage() default "类型错误,不是指定类型";
-    String datePattern() default "";//指定日期格式
+    String[] datePattern() default {};//指定日期格式
 
     //boolean isNeedDate() default false;//是否需要开启验证日期
     //String isNeedDateMessage() default "不是日期格式";

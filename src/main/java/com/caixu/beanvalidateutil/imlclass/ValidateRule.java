@@ -100,7 +100,7 @@ public class ValidateRule {
                 if (o==null || "".equals(o)){return false;}
                 Method[] ms = (Method[]) mo.get("methods");
                 Class<?> t;
-                String datePatt="";
+                String[] datePatt=null;
 
                 Object source = mo.get("source");
                 if ("vali2".equals(source)) {
@@ -157,14 +157,23 @@ public class ValidateRule {
                 if (Date.class.isAssignableFrom(t)) {
                     try {
                         Date date=null;
-                        if (StringUtils.isBlank(datePatt)){
+                        if (datePatt==null || datePatt.length==0){
                             date = DateUtil.allStr2Date(s);
                         }else {
-                            date=DateUtil.str2DateTime(s,datePatt);
+                            for (String sp:datePatt){
+                                try {
+                                    date=DateUtil.str2DateTime(s,sp);
+                                    break;
+                                } catch (Exception e) {
+                                    continue;
+                                }
+                            }
                         }
 
                         if (date != null) {
                             return false;
+                        }else {
+                            return true;
                         }
                     } catch (Exception e) {
                         return true;
