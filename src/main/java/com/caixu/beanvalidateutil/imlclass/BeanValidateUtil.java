@@ -165,6 +165,9 @@ public class BeanValidateUtil {
                     }
                     if (gg != null) {
                         String v= BeanUtils.getProperty(t,fieldArr[i].getName());
+                        if (StringUtils.isNotBlank(v)&&v.length()>21){
+                            v=StringUtils.substring(v,0,20)+"...";
+                        }
                         message +=  "[{title}]值为["+v+ "]>>>[" + (String) gg.invoke(annotation)+"]; ";
                     }
                 }

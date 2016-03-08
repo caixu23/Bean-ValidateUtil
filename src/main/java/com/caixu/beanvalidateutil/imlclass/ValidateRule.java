@@ -60,7 +60,7 @@ public class ValidateRule {
                     String[] oc = limit.split(",");
                     if (oc.length == 1) {
                         minSize = 0;
-                        maxSize = Integer.valueOf(oc[1]);
+                        maxSize = Integer.valueOf(oc[0]);
                     } else {
                         minSize = Integer.valueOf(oc[0]);
                         maxSize = Integer.valueOf(oc[1]);
