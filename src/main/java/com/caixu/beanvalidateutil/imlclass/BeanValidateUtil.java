@@ -112,7 +112,7 @@ public class BeanValidateUtil {
         }
 
         for (int i=0;i<ts.size();i++){
-            VResult vResult=null;
+            VResult vResult=new VResult();
             if (ObjectUtil.isNotNullEmpty(startIndex)){
                 vResult=vali2(ts.get(i),String.valueOf(i),startIndex[0]);
             }else {
