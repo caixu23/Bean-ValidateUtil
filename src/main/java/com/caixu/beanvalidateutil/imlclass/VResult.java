@@ -21,6 +21,7 @@ public class VResult {
             for (VVResult vv:vvResult){
                 m+=vv.getMessage();
             }
+            m=StringUtils.replace(m,"[{title}]","");
             return StringUtils.replace(m,"; ;",";</br>").replaceAll("[\\t\\n\\r]", "");
         }else {
             return "";
@@ -32,7 +33,7 @@ public class VResult {
             String m="";
             for (VVResult vv:vvResult){
                 String colTitle="";
-                if (vv.getRowIndex()!=null&&arr.length>=vv.getRowIndex()){
+                if (vv.getColumnIndex()!=null&&arr.length>=vv.getColumnIndex()){
                     colTitle=arr[vv.getColumnIndex()];
                     m+=StringUtils.replace(vv.getMessage(),"{title}",colTitle);
                 }else {
