@@ -103,7 +103,7 @@ public class BeanValidateUtil {
         if (ObjectUtil.isEmptyAll(ts)){
             VResult vResult=new VResult();
             VVResult vvResult12=new VVResult();
-            vvResult12.setMessage("没有需要导入的记录");
+            vvResult12.setMessage("没有需要导入的记录<br>");
             vvResults.add(vvResult12);
 
             vResult.setVvResult(vvResults);
